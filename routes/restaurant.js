@@ -6,4 +6,5 @@ module.exports = (app) => {
     app.get("/api/restaurant", restaurantController.getRestaurant);
     app.get("/api/restaurant/categories/:categoryName", restaurantController.getRestaurantByCategory);
     app.get("/api/restaurant/categories", restaurantController.getRestaurantCategories);
+    app.get("/api/restaurant/:id", restaurantController.getRestaurantById);
 }

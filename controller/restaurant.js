@@ -13,7 +13,7 @@ exports.addRestaurant = async function(req, res) {
         const restaurantDetails = await restaurantModle.create(restaurantReq);
         res.status(200).send(restaurantDetails);
     } catch(error) {
-        res.status(500).send("Some error occurred while creating the Restaurant");
+        res.status(500).send({message:"Some error occurred while creating the Restaurant"});
     }
 }
 
@@ -26,7 +26,7 @@ exports.getRestaurant = async function(req, res) {
         }
         res.status(200).send(response);
     } catch(error) {
-        res.status(500).send("Some error occurred while creating the Restaurant");
+        res.status(500).send({message:"Some error occurred while creating the Restaurant"});
     }
 }
 
@@ -35,18 +35,34 @@ exports.getRestaurantCategories = async function(req, res) {
         const categories = await restaurantModle.distinct("category");
         res.status(200).send(categories);
     } catch(error) {
-        res.status(500).send("Some error occurred while creating the Restaurant");
+        res.status(500).send({message:"Some error occurred while creating the Restaurant"});
     }
 }
 
 exports.getRestaurantByCategory = async function(req, res) {
     try{
-        const categoryName = req.params.categoryName ;
+        const categoryName = req.params.categoryName;
         const restaurantDetails = await restaurantModle.find({
             category: categoryName
         });
         res.status(200).send(restaurantDetails);
     } catch(error) {
-        res.status(500).send("Some error occurred while creating the Restaurant");
+        res.status(500).send({message:"Some error occurred while creating the Restaurant"});
+    }
+}
+
+exports.getRestaurantById = async function(req, res) {
+    try{
+        const id = req.params.id;
+        const restaurantDetails = await restaurantModle.findOne({
+            _id: id
+        });
+        if(restaurantDetails) {
+            res.status(200).send(restaurantDetails);
+        } else {
+            res.status(404).send({message: "No Restaurant find with given ID"});
+        }
+    } catch(error) {
+        res.status(500).send({message:"Some error occurred while creating the Restaurant"});
     }
 }
