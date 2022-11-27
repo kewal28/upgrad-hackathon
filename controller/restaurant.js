@@ -38,3 +38,15 @@ exports.getRestaurantCategories = async function(req, res) {
         res.status(500).send("Some error occurred while creating the Restaurant");
     }
 }
+
+exports.getRestaurantByCategory = async function(req, res) {
+    try{
+        const categoryName = req.params.categoryName ;
+        const restaurantDetails = await restaurantModle.find({
+            category: categoryName
+        });
+        res.status(200).send(restaurantDetails);
+    } catch(error) {
+        res.status(500).send("Some error occurred while creating the Restaurant");
+    }
+}
