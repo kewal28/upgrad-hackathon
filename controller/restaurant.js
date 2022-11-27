@@ -78,3 +78,30 @@ exports.getRestaurantByRating = async function(req, res) {
         res.status(500).send({message:"Some error occurred while creating the Restaurant"});
     }
 }
+
+exports.updateRestaurantById = async function(req, res) {
+    try{
+        const id = req.params.id;
+        const restaurantReq = {
+            name: req.body.name,
+            description: req.body.description,
+            category: req.body.category,
+            imageURL: req.body.imageURL,
+            location: req.body.location,
+            phone: req.body.phone,
+            rating: 5,
+            _id: id
+        }
+        const restaurantDetails = await restaurantModle.findOne({
+            _id: id
+        });
+        if(restaurantDetails) {
+            const _ = await restaurantModle.updateOne(restaurantReq);
+            res.status(200).send({message: "Restaurant updated successfully."});
+        } else {
+            res.status(404).send({message: "No Restaurant find with given ID"});
+        }
+    } catch(error) {
+        res.status(500).send({message:"Some error occurred while creating the Restaurant"});
+    }
+}
