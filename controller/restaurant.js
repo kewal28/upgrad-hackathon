@@ -66,3 +66,15 @@ exports.getRestaurantById = async function(req, res) {
         res.status(500).send({message:"Some error occurred while creating the Restaurant"});
     }
 }
+
+exports.getRestaurantByRating = async function(req, res) {
+    try{
+        const ratingValue = req.params.ratingValue;
+        const restaurantDetails = await restaurantModle.find({
+            rating: ratingValue
+        });
+        res.status(200).send(restaurantDetails);
+    } catch(error) {
+        res.status(500).send({message:"Some error occurred while creating the Restaurant"});
+    }
+}
