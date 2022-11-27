@@ -122,3 +122,12 @@ exports.deleteRestaurantById = async function(req, res) {
         res.status(500).send({message:"Some error occurred while creating the Restaurant"});
     }
 }
+
+exports.deleteRestaurants = async function(req, res) {
+    try{
+        const outPut = await restaurantModle.deleteMany();
+        res.status(200).send({restaurant: outPut, message: "Restaurants deleted successfully."});
+    } catch(error) {
+        res.status(500).send({message:"Some error occurred while creating the Restaurant"});
+    }
+}
