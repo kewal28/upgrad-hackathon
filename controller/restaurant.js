@@ -29,3 +29,12 @@ exports.getRestaurant = async function(req, res) {
         res.status(500).send("Some error occurred while creating the Restaurant");
     }
 }
+
+exports.getRestaurantCategories = async function(req, res) {
+    try{
+        const categories = await restaurantModle.distinct("category");
+        res.status(200).send(categories);
+    } catch(error) {
+        res.status(500).send("Some error occurred while creating the Restaurant");
+    }
+}
