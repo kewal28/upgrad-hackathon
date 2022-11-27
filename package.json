@@ -1,0 +1,23 @@
+{
+  "name": "upgrad-hackathon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kewal28/upgrad-hackathon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kewal28/upgrad-hackathon/issues"
+  },
+  "homepage": "https://github.com/kewal28/upgrad-hackathon#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.7.3"
+  }
+}
