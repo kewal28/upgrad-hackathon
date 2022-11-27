@@ -105,3 +105,20 @@ exports.updateRestaurantById = async function(req, res) {
         res.status(500).send({message:"Some error occurred while creating the Restaurant"});
     }
 }
+
+exports.deleteRestaurantById = async function(req, res) {
+    try{
+        const id = req.params.id;
+        const restaurantDetails = await restaurantModle.findOne({
+            _id: id
+        });
+        if(restaurantDetails) {
+            const _ = await restaurantModle.deleteOne({_id: id});
+            res.status(200).send({restaurant: restaurantDetails, message: "Restaurant deleted successfully."});
+        } else {
+            res.status(404).send({restaurant:null, message: "Restaurant deleted successfully."});
+        }
+    } catch(error) {
+        res.status(500).send({message:"Some error occurred while creating the Restaurant"});
+    }
+}

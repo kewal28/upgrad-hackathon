@@ -9,4 +9,5 @@ module.exports = (app) => {
     app.get("/api/restaurant/:id", restaurantController.getRestaurantById);
     app.get("/api/restaurant/rating/:ratingValue", restaurantController.getRestaurantByRating);
     app.put("/api/restaurant/:id", restaurantController.updateRestaurantById);
+    app.delete("/api/restaurant/:id", restaurantController.deleteRestaurantById);
 }
