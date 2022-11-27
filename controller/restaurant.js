@@ -16,3 +16,16 @@ exports.addRestaurant = async function(req, res) {
         res.status(500).send("Some error occurred while creating the Restaurant");
     }
 }
+
+exports.getRestaurant = async function(req, res) {
+    try{
+        const restaurantDetails = await restaurantModle.find();
+        const response = {
+            restaurants: restaurantDetails,
+            message: "Restaurants fetched successfully."
+        }
+        res.status(200).send(response);
+    } catch(error) {
+        res.status(500).send("Some error occurred while creating the Restaurant");
+    }
+}
